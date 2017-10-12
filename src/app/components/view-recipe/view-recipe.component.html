@@ -1,0 +1,35 @@
+<div *ngIf="recipe">
+  <h2>{{recipe.name}}</h2>
+  <div *ngIf="recipe.ingredients">
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>RecipeID</th>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Units and Style</th>
+      </tr>
+      <tr *ngFor="let ingredient of recipe.ingredients">
+        <td>{{ ingredient.ID }}</td>
+        <td>{{ ingredient.recipeID }}</td>
+        <td>{{ ingredient.name }}</td>
+        <td>{{ ingredient.quantity }}</td>
+        <td>{{ ingredient.unitsAndStyle }}</td>
+      </tr>
+    </table>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-6">
+      <p><b>Serves: {{recipe.serves}}</b></p>
+      <p><textarea class="text-info" readonly name="Text1" cols="60" rows="5">{{recipe.steps}}</textarea></p>
+    </div>
+    <div class="col-md-6">
+      <p><b>Remarks:</b></p>
+      <p><textarea class="text-info" readonly name="Text2" cols="60" rows="3">{{recipe.remarks}}</textarea></p>
+    </div>
+  </div>
+
+
+</div>
+<button class="btn btn-sm btn-primary" (click)="goBack()">Back</button>

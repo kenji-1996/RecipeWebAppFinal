@@ -1,0 +1,39 @@
+<!-- This is a HTML representation of the add ingredient which is used for adding to new recipes or editing old ones. -->
+
+<div class="row">
+  <div class="col-md-6">
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Units and Style</th>
+      </tr>
+      <tr *ngFor="let ingre of newIngredients"
+          [class.selected]="ingre === selectedIngredient"
+          (click)="selectIngredient(ingre)">
+        <td>{{ingre.ID}}</td>
+        <td>{{ingre.name}}</td>
+        <td>{{ingre.quantity}}</td>
+        <td>{{ingre.unitsAndStyle}}</td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-md-6">
+    <form [formGroup]="addIngredientForm">
+      <label>Name:</label>
+      <input type="text" formControlName="name" >
+      <p *ngIf="addIngredientForm.controls.name.errors">This field is required!</p><p></p>
+      <label>Quantity:</label>
+      <input type="number" formControlName="quantity" >
+      <p *ngIf="addIngredientForm.controls.quantity.errors">This field is required!</p><p></p>
+      <p></p>
+      <label>Units and Style:</label>
+      <input type="text" formControlName="unitsAndStyle" >
+      <p></p>
+    </form>
+    <button class="btn btn-sm btn-primary" *ngIf="!selectedIngredient" (click)="addIngredient()">Add new ingredient</button> <button class="btn btn-sm btn-primary" *ngIf="selectedIngredient" (click)="updateIngredient()">Update ingredient</button> <button class="btn btn-sm btn-danger" *ngIf="selectedIngredient" (click)="deleteIngredient()">Delete selected ingredient</button>
+  </div>
+</div>
+
+

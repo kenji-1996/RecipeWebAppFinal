@@ -1,0 +1,29 @@
+<h2>Add {{addRecipeForm.controls.name.value}}</h2>
+<form [formGroup]="addRecipeForm">
+  <div class="row">
+    <div class="col-md-6">
+      <label>Name:</label>
+      <input type="text" formControlName="name" ><br>
+      <p *ngIf="addRecipeForm.controls.name.errors">This field is required!</p>
+      <label>Steps:</label>
+      <textarea  name="Text1" cols="60" rows="5" type="text" formControlName="steps" ></textarea>
+    </div>
+    <div class="col-md-6">
+      <label>Serves:</label>
+      <input type="text" formControlName="serves" ><br>
+      <label>Remarks:</label>
+      <textarea  name="Text1" cols="60" rows="5" type="text" formControlName="remarks" ></textarea>
+    </div>
+  </div>
+
+  <p></p>
+
+  <p></p>
+  <hr>
+  <app-add-ingredient></app-add-ingredient>
+  <hr>
+  <button class="btn btn-sm btn-primary" (click)="addRecipe()">Save recipe and return</button> <button class="btn btn-sm btn-warning" (click)="goBack()">Discard and return</button>
+</form>
+
+
+

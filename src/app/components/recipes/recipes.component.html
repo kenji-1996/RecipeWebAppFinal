@@ -1,0 +1,41 @@
+<button class="btn btn-sm btn-primary" (click)="addRecipe()">Add Recipe</button>
+<button class="btn btn-sm btn-light" *ngIf="selectedRecipe" (click)=" viewDetail()">View Details</button>
+<button class="btn btn-sm btn-warning" *ngIf="selectedRecipe" (click)="editRecipe()">Edit Selected Recipe</button>
+<button class="btn btn-sm btn-danger" *ngIf="selectedRecipe" (click)="deleteRecipe()">Delete Selected Recipe</button>
+<p></p>
+<table class="table">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Serves</th>
+    <th>Ingredients</th>
+    <th>Remarks</th>
+  </tr>
+  <ng-container *ngIf="filterText">
+    <tr *ngFor="let recipe of recipes | searchByString: filterText"
+        [class.selected]="recipe === selectedRecipe"
+        (click)="selectRecipe(recipe)">
+      <td>{{ recipe.ID }}</td>
+      <td>{{ recipe.name }}</td>
+      <td>{{ recipe.serves }}</td>
+      <td>{{getIngredients(recipe.ingredients)}}</td>
+      <td>{{ recipe.remarks }}</td>
+    </tr>
+  </ng-container>
+  <ng-container *ngIf="!filterText">
+    <tr *ngFor="let recipe of recipes | OrderBy : (filter? ['-name'] : ['+name'])"
+        [class.selected]="recipe === selectedRecipe"
+        (click)="selectRecipe(recipe)">
+      <td>{{ recipe.ID }}</td>
+      <td>{{ recipe.name }}</td>
+      <td>{{ recipe.serves }}</td>
+      <td>{{getIngredients(recipe.ingredients)}}</td>
+      <td>{{ recipe.remarks }}</td>
+    </tr>
+  </ng-container>
+  </table>
+<p>Sort recipe by name <input type="checkbox"  [(ngModel)]="filter"></p>
+<p>Filter String: <input style="width: 400px;" [(ngModel)]="filterText" class="form-control" placeholder="Search By Name" ></p>
+
+
+
