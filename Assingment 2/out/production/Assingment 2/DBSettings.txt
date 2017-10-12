@@ -1,0 +1,5 @@
+{
+    DBURL:"jdbc:mysql://localhost:3306/java?autoReconnect=true&useSSL=false",
+    userName:"root",
+    password:""
+}
